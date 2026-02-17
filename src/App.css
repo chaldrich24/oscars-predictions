@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-color: #565656;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -14,8 +16,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,6 +27,105 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.main-btn {
+  height: 100px;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
+  border-radius: 10px;
+  font-size: 18px;
+  font-family: Palatino, URW Palladio L, serif;
+  background-color: #b2a482;
+  border-radius: 50px;
+  background-image: linear-gradient(135deg, #e9ddd7 0%, #949494 100%);
+  box-shadow: 0 20px 30px -6px rgba(95, 96, 95, 0.5);
+}
+
+.submit-btn {
+  height: 50px;
+  padding-left: 5%;
+  padding-right: 5%;
+  border-radius: 10px;
+  font-size: 18px;
+  font-family: Palatino, URW Palladio L, serif;
+  background-color: #f4c15c;
+  border-radius: 50px;
+}
+
+.btn {
+  height: 40px;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
+  border-radius: 10px;
+  font-size: 18px;
+  font-family: Palatino, URW Palladio L, serif;
+  background-color: #abaaa8;
+  border-radius: 50px;
+}
+
+.main-btn:hover {
+  box-shadow: none;
+}
+
+.main-btn:active {
+  opacity: 0.5;
+}
+
+#btns {
+  display: flex;
+  justify-content: center;
+}
+
+p {
+  font-size: 18px;
+  font-family: Palatino, URW Palladio L, serif;
+  color: white;
+  font-weight: 800;
+}
+
+.title {
+  text-transform: uppercase;
+  font-size: 25;
+}
+
+.question-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+@media (max-width: 500px) {
+  #btns {
+    flex-direction: column;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .card {
+    margin: 50px 0;
+  }
+
+  .question-wrapper {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
+  .title {
+    text-align: start;
+    font-size: 18px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: start;
+  }
 }
 
 @keyframes App-logo-spin {

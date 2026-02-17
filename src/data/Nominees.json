@@ -1,0 +1,273 @@
+{
+  "data": [
+    {
+      "category": "International Feature Film",
+      "nominees": [
+        "The Secret Agent — Brazil",
+        "It Was Just an Accident — France",
+        "Sentimental Value — Norway",
+        "Sirât — Spain",
+        "The Voice of Hind Rajab — Tunisia"
+      ],
+      "points": 3
+    },
+    {
+      "category": "Animated Feature Film",
+      "nominees": [
+        "Arco",
+        "Elio",
+        "KPop Demon Hunters",
+        "Little Amélie or the Character of Rain",
+        "Zootopia 2"
+      ],
+      "points": 3
+    },
+    {
+      "category": "Animated Short Film",
+      "nominees": [
+        "Butterfly",
+        "Forevergreen",
+        "The Girl Who Cried Pearls",
+        "Retirement Plan",
+        "The Three Sisters"
+      ],
+      "points": 2
+    },
+    {
+      "category": "Documentary Feature Film",
+      "nominees": [
+        "The Alabama Solution",
+        "Come See Me in the Good Light",
+        "Cutting Through Rocks",
+        "Mr. Nobody Against Putin",
+        "The Perfect Neighbor"
+      ],
+      "points": 2
+    },
+    {
+      "category": "Documentary Short Film",
+      "nominees": [
+        "All the Empty Rooms",
+        "Armed Only With a Camera: The Life and Death of Brent Renaud",
+        "Children No More: “Were and Are Gone”",
+        "The Devil Is Busy",
+        "Perfectly a Strangeness"
+      ],
+      "points": 2
+    },
+    {
+      "category": "Live Action Short Film",
+      "nominees": [
+        "Butcher’s Stain",
+        "A Friend of Dorothy",
+        "Jane Austen’s Period Drama",
+        "The Singers",
+        "Two People Exchanging Saliva"
+      ],
+      "points": 2
+    },
+    {
+      "category": "Cinematography",
+      "nominees": [
+        "Frankenstein",
+        "Marty Supreme",
+        "One Battle After Another",
+        "Sinners",
+        "Train Dreams"
+      ],
+      "points": 3
+    },
+    {
+      "category": "Film Editing",
+      "nominees": [
+        "F1 — Stephen Mirrione",
+        "Marty Supreme — Ronald Bronstein & Josh Safdie",
+        "One Battle After Another — Andy Jurgensen",
+        "Sentimental Value — Olivier Bugge Coutté",
+        "Sinners — Michael P. Shawver"
+      ],
+      "points": 3
+    },
+    {
+      "category": "Visual Effects",
+      "nominees": [
+        "Avatar: Fire and Ash",
+        "F1",
+        "Jurassic World Rebirth",
+        "The Lost Bus",
+        "Sinners"
+      ],
+      "points": 3
+    },
+    {
+      "category": "Music (Original Score)",
+      "nominees": [
+        "Bugonia",
+        "Frankenstein",
+        "Hamnet",
+        "One Battle After Another",
+        "Sinners"
+      ],
+      "points": 3
+    },
+    {
+      "category": "Music (Original Song)",
+      "nominees": [
+        "Dear Me — Diane Warren: Relentless",
+        "Golden — KPop Demon Hunters",
+        "I Lied To You — Sinners",
+        "Sweet Dreams of Joy — Viva Verdi!",
+        "Train Dreams — Train Dreams"
+      ],
+      "points": 2
+    },
+    {
+      "category": "Sound",
+      "nominees": [
+        "F1",
+        "Frankenstein",
+        "One Battle After Another",
+        "Sinners",
+        "Sirât"
+      ],
+      "points": 2
+    },
+    {
+      "category": "Production Design",
+      "nominees": [
+        "Frankenstein",
+        "Hamnet",
+        "Marty Supreme",
+        "One Battle After Another",
+        "Sinners"
+      ],
+      "points": 2
+    },
+    {
+      "category": "Makeup and Hairstyling",
+      "nominees": [
+        "Frankenstein",
+        "Kokuho",
+        "Sinners",
+        "The Smashing Machine",
+        "The Ugly Stepsister"
+      ],
+      "points": 2
+    },
+    {
+      "category": "Costume Design",
+      "nominees": [
+        "Avatar: Fire and Ash",
+        "Frankenstein",
+        "Hamnet",
+        "Marty Supreme",
+        "Sinners"
+      ],
+      "points": 2
+    },
+    {
+      "category": "Casting",
+      "nominees": [
+        "Hamnet",
+        "Marty Supreme",
+        "One Battle After Another",
+        "The Secret Agent",
+        "Sinners"
+      ],
+      "points": 2
+    },
+    {
+      "category": "Actor in a Leading Role",
+      "nominees": [
+        "Timothée Chalamet — Marty Supreme",
+        "Leonardo DiCaprio — One Battle After Another",
+        "Ethan Hawke — Blue Moon",
+        "Michael B. Jordan — Sinners",
+        "Wagner Moura — The Secret Agent"
+      ],
+      "points": 4
+    },
+    {
+      "category": "Actress in a Leading Role",
+      "nominees": [
+        "Jessie Buckley — Hamnet",
+        "Rose Byrne — If I Had Legs I'd Kick You",
+        "Kate Hudson — Song Sung Blue",
+        "Renate Reinsve — Sentimental Value",
+        "Emma Stone — Bugonia"
+      ],
+      "points": 4
+    },
+    {
+      "category": "Actor in a Supporting Role",
+      "nominees": [
+        "Benicio Del Toro — One Battle After Another",
+        "Jacob Elordi — Frankenstein",
+        "Delroy Lindo — Sinners",
+        "Sean Penn — One Battle After Another",
+        "Stellan Skarsgård — Sentimental Value"
+      ],
+      "points": 4
+    },
+    {
+      "category": "Actress in a Supporting Role",
+      "nominees": [
+        "Elle Fanning — Sentimental Value",
+        "Inga Ibsdotter Lilleaas — Sentimental Value",
+        "Amy Madigan — Weapons",
+        "Wunmi Mosaku — Sinners",
+        "Teyana Taylor — One Battle After Another"
+      ],
+      "points": 4
+    },
+    {
+      "category": "Writing (Adapted Screenplay)",
+      "nominees": [
+        "Will Tracy — Bugonia",
+        "Guillermo del Toro — Frankenstein",
+        "Chloé Zhao & Maggie O’Farrell — Hamnet",
+        "Paul Thomas Anderson — One Battle After Another",
+        "Clint Bentley & Greg Kwedar — Train Dreams"
+      ],
+      "points": 3
+    },
+    {
+      "category": "Writing (Original Screenplay)",
+      "nominees": [
+        "Robert Kaplow — Blue Moon",
+        "Jafar Panahi & Collaborators — It Was Just an Accident",
+        "Ronald Bronstein & Josh Safdie — Marty Supreme",
+        "Joachim Trier & Eskil Vogt — Sentimental Value",
+        "Ryan Coogler — Sinners"
+      ],
+      "points": 3
+    },
+    {
+      "category": "Directing",
+      "nominees": [
+        "Paul Thomas Anderson — One Battle After Another",
+        "Ryan Coogler — Sinners",
+        "Chloé Zhao — Hamnet",
+        "Josh Safdie — Marty Supreme",
+        "Joachim Trier — Sentimental Value"
+      ],
+      "points": 4
+    },
+    {
+      "category": "Best Picture",
+      "nominees": [
+        "Bugonia",
+        "F1",
+        "Frankenstein",
+        "Hamnet",
+        "Marty Supreme",
+        "One Battle After Another",
+        "The Secret Agent",
+        "Sentimental Value",
+        "Sinners",
+        "Train Dreams"
+      ],
+      "points": 6
+    }
+  ]
+}

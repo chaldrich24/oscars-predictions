@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import CreateEntry from './CreateEntry';
+
+
 
 function App() {
+  const [content, setContent] = useState();
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>
+          The Oscars 2026
+        </h1>
       </header>
+      {!content &&<div id="btns">
+        <button className='main-btn' onClick={() => setContent("create")}>Add Entry</button>
+        <button className='main-btn' onClick={() => console.log("He")}>Edit Entry</button>
+      </div>}
+      {content && <button className='btn' onClick={() => setContent(null)}>Back</button>}
+      {content === "create" && <CreateEntry />}
     </div>
   );
 }
