@@ -1,12 +1,27 @@
 import React, { useId, useMemo } from "react";
+import {Selection} from "./CreateEntry";
 
-function slugify(input) {
+function slugify(input: string) {
   return input
     .toLowerCase()
     .trim()
     .replace(/['’]/g, "")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
+}
+
+type OscarQuestionProps = {
+  category: string;
+  nominees: string[];
+  points: number;
+  value?: string | null;
+  defaultValue?: string | null;
+  onChange?: (value: string | null) => void;
+  disabled?: boolean;
+  showClear?: boolean;
+  selections: Record<string, Selection>;
+  setSelections: React.Dispatch<React.SetStateAction<Record<string, Selection>>>;
+  categoryId: string;
 }
 
 export default function OscarQuestion({
@@ -18,9 +33,10 @@ export default function OscarQuestion({
   onChange,
   disabled = false,
   showClear = true,
-  answers,
-  setAnswers,
-}) {
+  selections,
+  setSelections,
+  categoryId
+}: OscarQuestionProps) {
   const reactId = useId();
 
   // Support controlled + uncontrolled
@@ -40,16 +56,16 @@ export default function OscarQuestion({
 
   const name = useMemo(() => `oq-${slugify(category)}-${reactId}`, [category, reactId]);
 
-  const setSelected = (next) => {
+  const setSelected = (next: string | null) => {
     if (disabled) return;
     if (!isControlled) setInternalValue(next);
     
     if (!next) {
-        const newState = { ...answers };
+        const newState = { ...selections };
         delete newState[category];
-        setAnswers(newState);
+        setSelections(newState);
     } else {
-        setAnswers((prev) => ({ ...prev, [category]: next }));
+        setSelections((prev) => ({ ...prev, [category]: {nominee: next, categoryId: categoryId} }));
     }
   };
 
@@ -157,7 +173,7 @@ const styles = {
     display: "flex",
     gap: 8,
     alignItems: "center",
-    flexWrap: "wrap",
+    flexWrap: "wrap" as "wrap",
     justifyContent: "flex-end",
   },
   pill: {
@@ -185,16 +201,16 @@ const styles = {
     borderRadius: 12,
     border: "1px solid rgba(0,0,0,0.10)",
     cursor: "pointer",
-    userSelect: "none",
+    userSelect: "none" as "none",
   },
   rowDisabled: {
     cursor: "not-allowed",
     opacity: 0.7,
   },
   radioHidden: {
-    position: "absolute",
+    position: "absolute" as "absolute",
     opacity: 0,
-    pointerEvents: "none",
+    pointerEvents: "none" as "none",
   },
   bullet: {
     width: 16,
@@ -202,7 +218,7 @@ const styles = {
     borderRadius: 999,
     borderWidth: "2px",
     borderStyle: "solid",
-    boxSizing: "border-box",
+    boxSizing: "border-box" as "border-box",
     display: "inline-block",
   },
   bulletChecked: {
@@ -216,7 +232,7 @@ const styles = {
   text: {
     fontSize: 13,
     lineHeight: 1.3,
-    textAlign: "left",
+    textAlign: "left" as "left",
   },
   footer: {
     marginTop: 12,

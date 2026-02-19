@@ -1,10 +1,15 @@
 import { useState } from "react";
 import {FaEye, FaEyeSlash} from "react-icons/fa";
 
+type PinInputProps = {
+    pin: string;
+    setPin: React.Dispatch<React.SetStateAction<string>>;
+}
+
 export default function PinInput({
     pin,
     setPin
-}) {
+}: PinInputProps) {
   const [showPin, setShowPin] = useState(false);
 
   return (
