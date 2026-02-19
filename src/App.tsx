@@ -11,8 +11,8 @@ function App() {
   const renderContent = () => {
     switch (content) {
       case "create":
-        return <CreateEntry />;
-      default:
+        return <CreateEntry setContent={setContent} />;
+      case "leaderboard":
         return <Leaderboard />;
     }
   }
@@ -22,15 +22,16 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>
-          The Oscars 2026
-        </h1>
+        <img
+          src={"/images/oscars.png"}
+          style={{ display: "block", width: "100%", height: 100, objectFit: "contain", paddingLeft: 20 }}
+        />
       </header>
       {!content &&<div id="btns">
         <button className='main-btn' onClick={() => setContent("create")}><span style={{marginTop: "5px"}}>CREATE NEW ENTRY</span> <FaPlusCircle className="plus-icon" /></button>
-        <button className='main-btn' onClick={() => getLeaderboard()}><span style={{marginTop: "5px"}}>VIEW LEADERBOARD</span> <FaPlusCircle className="plus-icon" /></button>
+        <button className='main-btn' onClick={() => setContent("leaderboard")}><span style={{marginTop: "5px"}}>VIEW LEADERBOARD</span> <FaPlusCircle className="plus-icon" /></button>
       </div>}
-      {content === "create" && <button className='btn' onClick={() => setContent(null)}>Back</button>}
+      {content && <button className='btn' onClick={() => setContent(null)}>Back</button>}
       {contentToRender}
     </div>
   );

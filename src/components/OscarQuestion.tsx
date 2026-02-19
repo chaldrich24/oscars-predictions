@@ -72,11 +72,11 @@ export default function OscarQuestion({
   return (
     <section className="card" style={styles.card} aria-label={category}>
       <header style={styles.header} className="header">
-        <div style={{ display: "grid", gap: 6 }}>
+        <div style={{ display: "flex" }}>
           <h3 className="title" style={styles.title}>{category}</h3>
         </div>
 
-        <div style={styles.meta}>
+        <div className="meta" style={styles.meta}>
           <span style={{...styles.pill, ...{backgroundColor: selected ? "#efdb95" : "#bcb8b6dc"}}} className="pill">
             {points} point{points === 1 ? "" : "s"}
           </span>
@@ -147,7 +147,7 @@ export default function OscarQuestion({
 
 const styles = {
   card: {
-    maxWidth: 760,
+    maxWidth: 800,
     padding: "16px 16px 5px 16px",
     borderRadius: 7,
     border: "1px solid rgba(0,0,0,0.12)",
@@ -161,8 +161,8 @@ const styles = {
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "space-between",
-    gap: 7,
     marginBottom: 12,
+    width: "100%",
   },
   title: {
     margin: 0,
@@ -171,7 +171,6 @@ const styles = {
   },
   meta: {
     display: "flex",
-    gap: 8,
     alignItems: "center",
     flexWrap: "wrap" as "wrap",
     justifyContent: "flex-end",
@@ -185,6 +184,7 @@ const styles = {
   status: {
     fontSize: 10,
     opacity: 0.75,
+    marginLeft: 2
   },
   list: {
     listStyle: "none",

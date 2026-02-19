@@ -25,7 +25,7 @@ export type Selection = {
   categoryId: string;
 };
 
-function CreateEntry() {
+function CreateEntry({setContent}: {setContent: React.Dispatch<React.SetStateAction<string | null>>}) {
   const [data, setData] = useState<Category[] | null>(null);
   const [selections, setSelections] = useState<Record<string, Selection>>({});
   const [pin, setPin] = useState("");
@@ -57,13 +57,6 @@ function CreateEntry() {
     }
   }, [submitPressed]);
 
-  // const setValidPin = (e) => {
-  //   const val = e.target.value;
-  //   if (val.length > 4) return;
-  //   if (!/^\d*$/.test(val)) return;
-  //   setPin(val);
-  // }
-
   const handleSubmit = () => {
     const request: SubmitRequest = {
       name: name,
@@ -89,7 +82,8 @@ function CreateEntry() {
         .then((response) => {
           console.log("Submission response:", response);
           // TODO: "remove alerts and replace with nicer UI feedback"
-          alert("Entry submitted successfully!");
+          setContent(null);
+          // alert("Entry submitted successfully!");
         })
         .catch((error) => {
           console.error("Submission error:", error);

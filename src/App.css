@@ -1,3 +1,9 @@
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 .App {
   text-align: center;
   background-color: #565656;
@@ -110,6 +116,7 @@ p {
   align-items: center;
   justify-content: center;
   margin-top: 12px;
+  width: 100%;
 }
 
 @media (max-width: 1000px) {
@@ -119,6 +126,10 @@ p {
 }
 
 @media (max-width: 500px) {
+  .question-wrapper {
+    width: 75%;
+  }
+
   #btns {
     margin-left: 10%;
     margin-right: 10%;
@@ -136,6 +147,10 @@ p {
   .title {
     text-align: start;
     font-size: 18px;
+  }
+
+  .meta {
+    margin-top: 6px;
   }
 
   .header {
