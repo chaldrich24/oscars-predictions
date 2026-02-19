@@ -1,37 +1,78 @@
-import { useState } from 'react';
-import './App.css';
-import CreateEntry from './components/CreateEntry';
+import { useMemo, useState, useEffect } from "react";
+import "./App.css";
+import CreateEntry from "./components/CreateEntry";
 import { FaPlusCircle } from "react-icons/fa";
-import Leaderboard from './components/Leaderboard';
-import { getLeaderboard } from './lib/supabaseClient';
+import Leaderboard from "./components/Leaderboard";
+import { getLeaderboard } from "./lib/supabaseClient";
+import UserSelections from "./components/UserSelections";
 
 function App() {
   const [content, setContent] = useState<string | null>(null);
+  const [userSelections, setUserSelections] = useState<any>(null);
 
-  const renderContent = () => {
+  const displayUserSelections = (data: any) => {
+    if (data) {
+      setUserSelections(data);
+      setContent("user");
+    }
+  };
+
+  const contentToRender = useMemo(() => {
     switch (content) {
       case "create":
         return <CreateEntry setContent={setContent} />;
-      case "leaderboard":
-        return <Leaderboard />;
-    }
-  }
 
-  const contentToRender = renderContent();
+      case "leaderboard":
+        return <Leaderboard displayUserSelections={displayUserSelections} />;
+
+      case "user":
+        return userSelections ? (
+          <UserSelections userSelections={userSelections} />
+        ) : null;
+
+      default:
+        return null;
+    }
+  }, [content, userSelections]);
+
+  useEffect(() => {
+    if (content === "user" && !userSelections) setContent(null);
+  }, [content, userSelections]);
 
   return (
     <div className="App">
       <header className="App-header">
         <img
           src={"/images/oscars.png"}
-          style={{ display: "block", width: "100%", height: 100, objectFit: "contain", paddingLeft: 20 }}
+          style={{
+            display: "block",
+            width: "100%",
+            height: 100,
+            objectFit: "contain",
+            paddingLeft: 20,
+          }}
         />
       </header>
-      {!content &&<div id="btns">
-        <button className='main-btn' onClick={() => setContent("create")}><span style={{marginTop: "5px"}}>CREATE NEW ENTRY</span> <FaPlusCircle className="plus-icon" /></button>
-        <button className='main-btn' onClick={() => setContent("leaderboard")}><span style={{marginTop: "5px"}}>VIEW LEADERBOARD</span> <FaPlusCircle className="plus-icon" /></button>
-      </div>}
-      {content && <button className='btn' onClick={() => setContent(null)}>Back</button>}
+      {!content && (
+        <div id="btns">
+          <button className="main-btn" onClick={() => setContent("create")}>
+            <span style={{ marginTop: "5px" }}>CREATE NEW ENTRY</span>{" "}
+            <FaPlusCircle className="plus-icon" />
+          </button>
+          <button
+            className="main-btn"
+            onClick={() => setContent("leaderboard")}
+          >
+            <span style={{ marginTop: "5px" }}>VIEW LEADERBOARD</span>{" "}
+            <FaPlusCircle className="plus-icon" />
+          </button>
+        </div>
+      )}
+      {content && (
+        <button className="btn" onClick={() => setContent(null)}>
+          Back
+        </button>
+      )}
       {contentToRender}
     </div>
   );
