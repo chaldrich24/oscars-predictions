@@ -150,10 +150,10 @@ const styles = {
     maxWidth: 800,
     padding: "16px 16px 5px 16px",
     borderRadius: 7,
-    border: "1px solid rgba(0,0,0,0.12)",
+    border: "1px solid rgba(215, 213, 211, 0.16)",
     fontFamily:
       'system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"',
-    background: "white",
+    background: "#616161",
     width: "100%",
     margin: "10px 0",
   },
@@ -168,6 +168,7 @@ const styles = {
     margin: 0,
     lineHeight: 1.2,
     fontFamily: "Cormorant Garamond, serif",
+    color: "rgb(250, 250, 250)",
   },
   meta: {
     display: "flex",
@@ -202,6 +203,8 @@ const styles = {
     border: "1px solid rgba(0,0,0,0.10)",
     cursor: "pointer",
     userSelect: "none" as "none",
+    // CHANGED
+    background: "#686767",
   },
   rowDisabled: {
     cursor: "not-allowed",
@@ -220,19 +223,20 @@ const styles = {
     borderStyle: "solid",
     boxSizing: "border-box" as "border-box",
     display: "inline-block",
+    borderColor: "rgba(231, 231, 231, 0.8)",
   },
   bulletChecked: {
-    borderColor: "rgba(0,0,0,0.9)",
-    background: "rgba(0,0,0,0.9)",
-    boxShadow: "inset 0 0 0 3px white",
+    background: "rgba(237, 235, 235, 0.9)",
+    boxShadow: "inset 0 0 0 3px #686767",
   },
   bulletDisabled: {
-    borderColor: "rgba(0,0,0,0.25)",
+    borderColor: "rgba(231, 231, 231, 0.8)",
   },
   text: {
     fontSize: 13,
     lineHeight: 1.3,
     textAlign: "left" as "left",
+    color:"white"
   },
   footer: {
     marginTop: 12,
@@ -240,12 +244,13 @@ const styles = {
     justifyContent: "flex-end",
   },
   button: {
-    border: "1px solid rgba(255, 255, 255, 0.18)",
-    borderRadius: 10,
+    border: "none",
     padding: "8px 10px",
     background: "white",
     cursor: "pointer",
     fontSize: 13,
+    backgroundColor: "#686767",
+    color: "white",
   },
   buttonDisabled: {
     opacity: 0.6,

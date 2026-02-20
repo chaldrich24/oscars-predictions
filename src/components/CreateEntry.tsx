@@ -3,6 +3,7 @@ import "../App.css";
 import OscarQuestion from "./OscarQuestion";
 import PinInput from "./PinInput";
 import { getCategories, submitEntry } from "../lib/supabaseClient";
+import { useNavigate } from "react-router-dom";
 
 type Category = {
   id: string;
@@ -25,7 +26,8 @@ export type Selection = {
   categoryId: string;
 };
 
-function CreateEntry({setContent}: {setContent: React.Dispatch<React.SetStateAction<string | null>>}) {
+function CreateEntry() {
+  const navigate = useNavigate();
   const [data, setData] = useState<Category[] | null>(null);
   const [selections, setSelections] = useState<Record<string, Selection>>({});
   const [pin, setPin] = useState("");
@@ -82,7 +84,7 @@ function CreateEntry({setContent}: {setContent: React.Dispatch<React.SetStateAct
         .then((response) => {
           console.log("Submission response:", response);
           // TODO: "remove alerts and replace with nicer UI feedback"
-          setContent(null);
+          navigate("/");
           // alert("Entry submitted successfully!");
         })
         .catch((error) => {

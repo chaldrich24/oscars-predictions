@@ -1,4 +1,9 @@
-import Select, { GroupBase, OptionsOrGroups, Options, SingleValue } from "react-select";
+import Select, {
+  GroupBase,
+  OptionsOrGroups,
+  Options,
+  SingleValue,
+} from "react-select";
 import { UserSelections } from "./UserSelections";
 import { FaEdit, FaTimes } from "react-icons/fa";
 import { useState } from "react";
@@ -17,12 +22,12 @@ type UpdateEntryRequestBody = {
   user_id: string;
   category_id: string;
   nominee: string;
-}
+};
 
 type UpdatedNominee = {
-    display: string[];
-    value: string
-}
+  display: string[];
+  value: string;
+};
 
 const getBackgroundColor = (winner: string | null, nominee: string) => {
   if (winner) {
@@ -39,47 +44,49 @@ const getBackgroundColor = (winner: string | null, nominee: string) => {
 function SelectionItem({ nominees, pick, slug, user_id }: SelectionItemProms) {
   const updateNominee = (nominee: string): UpdatedNominee => {
     const display = nominee.includes("—")
-        ? nominee.split("—").map((i) => i.trim())
-        : [nominee];
+      ? nominee.split("—").map((i) => i.trim())
+      : [nominee];
     return {
-        display: display,
-        value: nominee
-    }
-  } 
+      display: display,
+      value: nominee,
+    };
+  };
 
   const [editing, setEditing] = useState<boolean>(false);
-  const [nominee, setNominee] = useState<UpdatedNominee>(updateNominee(pick.nominee));
+  const [nominee, setNominee] = useState<UpdatedNominee>(
+    updateNominee(pick.nominee),
+  );
   const [newNominee, setNewNominee] = useState<string>("");
 
   const editButton = () => {
     return (
-        <FaEdit
-            style={{
-              fontSize: 12,
-              opacity: 0.5,
-              color: "white",
-            }}
-            />
-    )
-  }
+      <FaEdit
+        style={{
+          fontSize: 12,
+          opacity: 0.5,
+          color: "white",
+        }}
+      />
+    );
+  };
 
   const exitEditButton = () => {
     return (
-        <FaTimes
-            style={{
-              fontSize: 12,
-              opacity: 0.5,
-              color: "white",
-            }}
-            />
-    )
-  }
+      <FaTimes
+        style={{
+          fontSize: 12,
+          opacity: 0.5,
+          color: "white",
+        }}
+      />
+    );
+  };
 
   const setNewEntry = (option: SingleValue<Option>) => {
     if (option && option.value != nominee.value) {
       setNewNominee(option.value);
     }
-  }
+  };
 
   const updateEntryHandler = (request: UpdateEntryRequestBody) => {
     if (request.nominee && request.nominee != nominee.value) {
@@ -87,11 +94,11 @@ function SelectionItem({ nominees, pick, slug, user_id }: SelectionItemProms) {
         .then(() => {
           setEditing(false);
           setNominee(updateNominee(request.nominee));
-          setNewNominee("")
+          setNewNominee("");
         })
         .catch((err) => console.error(err));
-    } 
-  }
+    }
+  };
 
   return (
     <div
@@ -115,13 +122,15 @@ function SelectionItem({ nominees, pick, slug, user_id }: SelectionItemProms) {
           justifyContent: "space-between",
         }}
       >
-        <div style={{ flex: 1 }} onClick={() => setEditing(!editing)}>
-            {editing ? (
-                exitEditButton()
-            ) : (
-                editButton()
-            )}
-        </div>
+        {pick.winner !== null ? (
+          <div style={{ flex: 1 }}>
+          </div>
+        ) : (
+          <div style={{ flex: 1 }} onClick={() => setEditing(!editing)}>
+            {editing ? exitEditButton() : editButton()}
+          </div>
+        )}
+
         <div style={{ flex: 10 }}>{pick.category_name}</div>
         {pick.winner && pick.winner == nominee.value ? (
           <div
@@ -161,7 +170,13 @@ function SelectionItem({ nominees, pick, slug, user_id }: SelectionItemProms) {
               border: "none",
               cursor: "pointer",
             }}
-            onClick={() => updateEntryHandler({ user_id, category_id: pick.category_id, nominee: newNominee })}
+            onClick={() =>
+              updateEntryHandler({
+                user_id,
+                category_id: pick.category_id,
+                nominee: newNominee,
+              })
+            }
           >
             Submit
           </button>
@@ -173,7 +188,9 @@ function SelectionItem({ nominees, pick, slug, user_id }: SelectionItemProms) {
           ) : (
             <div>
               <div>{nominee.display[0]}</div>
-              <div style={{ fontSize: 12, opacity: 0.75 }}>{nominee.display[1]}</div>
+              <div style={{ fontSize: 12, opacity: 0.75 }}>
+                {nominee.display[1]}
+              </div>
             </div>
           )}
         </div>

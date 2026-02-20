@@ -1,10 +1,11 @@
 import { use, useEffect, useRef, useState } from "react";
-import {
-  getEntry,
-  getLeaderboard,
-} from "../lib/supabaseClient";
+import { getLeaderboard, validateUser } from "../lib/supabaseClient";
+import { useNavigate } from "react-router-dom";
 
-function Leaderboard({displayUserSelections}: any) {
+import { FaPlusCircle } from "react-icons/fa";
+
+function Leaderboard() {
+  const navigate = useNavigate();
   const [leaderboardData, setLeaderboardData] = useState<any>(null);
   const didRun = useRef(false);
   const posterImageExts = ["jpg", "png", "webp"];
@@ -37,9 +38,27 @@ function Leaderboard({displayUserSelections}: any) {
         alignItems: "center",
         justifyContent: "center",
         marginBottom: 50,
-        marginTop: 20,
       }}
     >
+      <button
+        className="main-btn"
+        onClick={() => navigate("/create-new-entry")}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            fontSize: "15px",
+            verticalAlign: "bottom",
+            marginTop: "4px",
+          }}
+        >
+          CREATE NEW ENTRY
+        </div>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <FaPlusCircle className="plus-icon" />
+        </div>
+      </button>
       <div
         style={{
           display: "flex",
@@ -147,13 +166,13 @@ function Leaderboard({displayUserSelections}: any) {
                       user_id: entry.user_id,
                       pin: pin,
                     };
-                    getEntry(request)
-                      .then((response) => {
-                        displayUserSelections(response.data);
+                    validateUser(request)
+                      .then(() => {
+                        navigate(`/user/${entry.user_id}/${entry.name}`);
                       })
                       .catch((err) => {
                         console.error(err);
-                        alert("Error fetching entry details");
+                        alert("Error validating user: " + err.message);
                       });
                   }
                 }}
@@ -176,7 +195,8 @@ function Leaderboard({displayUserSelections}: any) {
                       marginLeft: 12,
                     }}
                   >
-                    {index + 1}. {entry.name}
+                    {index + 1}.{" "}
+                    <span style={{ fontWeight: "500" }}>{entry.name}</span>
                   </p>
                   <div
                     style={{

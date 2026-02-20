@@ -5,43 +5,9 @@ import { FaPlusCircle } from "react-icons/fa";
 import Leaderboard from "./components/Leaderboard";
 import { getLeaderboard } from "./lib/supabaseClient";
 import UserSelections, { UserSelectionsObj } from "./components/UserSelections";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
-  const [content, setContent] = useState<string | null>(null);
-  const [userSelections, setUserSelections] = useState<UserSelectionsObj | null>(null);
-  const contentRef = useRef<string | null>(null);
-
-  const displayUserSelections = (data: any) => {
-    if (data) {
-      setUserSelections(data);
-      setContent("user");
-    }
-  };
-
-  const contentToRender = useMemo(() => {
-    if (content !== contentRef.current) {
-      contentRef.current = content;
-      switch (content) {
-        case "create":
-          return <CreateEntry setContent={setContent} />;
-
-        case "leaderboard":
-          return <Leaderboard displayUserSelections={displayUserSelections} />;
-
-        case "user":
-          return userSelections ? (
-            <UserSelections userSelections={userSelections} />
-          ) : null;
-
-        default:
-          return null;
-      }
-    }
-  }, [content, userSelections]);
-
-  useEffect(() => {
-    if (content === "user" && !userSelections) setContent(null);
-  }, [content, userSelections]);
 
   return (
     <div className="App">
@@ -57,27 +23,11 @@ function App() {
           }}
         />
       </header>
-      {!content && (
-        <div id="btns">
-          <button className="main-btn" onClick={() => setContent("create")}>
-            <span style={{ marginTop: "5px" }}>CREATE NEW ENTRY</span>{" "}
-            <FaPlusCircle className="plus-icon" />
-          </button>
-          <button
-            className="main-btn"
-            onClick={() => setContent("leaderboard")}
-          >
-            <span style={{ marginTop: "5px" }}>VIEW LEADERBOARD</span>{" "}
-            <FaPlusCircle className="plus-icon" />
-          </button>
-        </div>
-      )}
-      {content && (
-        <button className="btn" onClick={() => setContent(null)}>
-          Back
-        </button>
-      )}
-      {contentToRender}
+      <Routes>
+        <Route path="/create-new-entry" element={<CreateEntry />} />
+        <Route path="/" element={<Leaderboard />} />
+        <Route path="/user/:userId/:name" element={<UserSelections />} />
+      </Routes>
     </div>
   );
 }

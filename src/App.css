@@ -48,24 +48,21 @@ body, html, #root {
 }
 
 .main-btn {
-  height: 50px;
-  margin-left: 5%;
-  margin-right: 5%;
-  margin-bottom: 5%;
-  padding-left: 5%;
-  padding-right: 5%;
-  border-radius: 10px;
-  font-size: 18px;
+  border-radius: 5px;
   font-family: Palatino, URW Palladio L, serif;
   background-color: #b2a482;
   border-radius: 50px;
-  background-image: linear-gradient(135deg, #e9ddd7 0%, #949494 100%);
+  background-image: linear-gradient(135deg, #ffffffaf 0%, #e9c1401d 100%);
   box-shadow: 0 20px 30px -6px rgba(95, 96, 95, 0.5);
   align-items: center;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-direction: row;
+  width: 60%;
+  max-width: 190px;
   line-height: 1;
+  padding: 5px 15px;
+  margin-bottom: 15px;
 }
 
 .submit-btn {
@@ -80,16 +77,13 @@ body, html, #root {
 }
 
 .btn {
-  height: 40px;
-  margin-left: 5%;
-  margin-right: 5%;
-  padding-left: 5%;
-  padding-right: 5%;
+  height: 30px;
   border-radius: 10px;
   font-size: 18px;
   font-family: Palatino, URW Palladio L, serif;
   background-color: #abaaa8;
   border-radius: 50px;
+  width: 20%;
 }
 
 .main-btn:hover {
@@ -98,6 +92,34 @@ body, html, #root {
 
 .main-btn:active {
   opacity: 0.5;
+}
+
+/* Style 9
+   ----------------------------- */
+.nine h1 {
+  text-align:center; font-size:40px; text-transform:uppercase; color:#ffffff; letter-spacing:1px;
+  font-family:"Playfair Display", serif; font-weight:400;
+  margin: 0;
+  width: 100%;
+  max-width: 400px;
+}
+.nine h1 span {
+  margin-top: 5px;
+    font-size:15px; color:#d6d5d5; word-spacing:1px; font-weight:normal; letter-spacing:2px;
+    text-transform: uppercase; font-family:"Raleway", sans-serif; font-weight:500;
+
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    grid-template-rows: 5px 0;
+    grid-gap: 20px;
+    align-items: center;
+}
+
+.nine h1 span:after,.nine h1 span:before {
+    content: " ";
+    display: block;
+    height: 1px;
+  background-color:#f8f8f8;
 }
 
 #btns {
@@ -124,8 +146,9 @@ p {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 12px;
-  width: 100%;
+  width: 75%;
+  margin-left: 10%;
+    margin-right: 10%;
 }
 
 @media (max-width: 1000px) {
@@ -135,22 +158,8 @@ p {
 }
 
 @media (max-width: 500px) {
-  .question-wrapper {
-    width: 75%;
-  }
-
-  #btns {
-    margin-left: 10%;
-    margin-right: 10%;
-    width: 70%;
-  }
   .card {
     margin: 50px 0;
-  }
-
-  .question-wrapper {
-    margin-left: 10%;
-    margin-right: 10%;
   }
 
   .title {
@@ -165,9 +174,6 @@ p {
   .header {
     flex-direction: column;
     align-items: start;
-  }
-  .main-btn{
-    font-size: 16px;
   }
 }
 

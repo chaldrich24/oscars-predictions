@@ -1,8 +1,9 @@
 import { use, useEffect, useRef, useState } from "react";
-import { FaEdit } from "react-icons/fa";
-import EditSelections from "./EditSelections";
-import Select, { GroupBase, OptionsOrGroups, Options } from "react-select";
+import { Options } from "react-select";
 import SelectionItem from "./SelectionItem";
+import { useParams } from "react-router-dom";
+import { getEntry } from "../lib/supabaseClient";
+import { GROUPS } from "../data/CategoryGroupings";
 
 type Option = { value: string; label: string };
 
@@ -26,80 +27,45 @@ export type UserSelectionsProps = {
   userSelections: UserSelectionsObj;
 };
 
-function UserSelections({ userSelections }: UserSelectionsProps) {
-  console.log(userSelections);
-  const GROUPS = [
-    {
-      title: "Top Awards",
-      slugs: [
-        "best_picture",
-        "directing",
-        "writing_original",
-        "writing_adapted",
-      ],
-    },
-    {
-      title: "Acting",
-      slugs: [
-        "actor_leading",
-        "actress_leading",
-        "actor_supporting",
-        "actress_supporting",
-      ],
-    },
-    {
-      title: "Technical & Craft",
-      slugs: [
-        "cinematography",
-        "film_editing",
-        "visual_effects",
-        "music_original_score",
-        "music_original_song",
-        "sound",
-        "production_design",
-        "makeup_hairstyling",
-        "costume_design",
-        "casting",
-      ],
-    },
-    {
-      title: "Other Features & Shorts",
-      slugs: [
-        "international_feature_film",
-        "animated_feature_film",
-        "animated_short_film",
-        "documentary_feature_film",
-        "documentary_short_film",
-        "live_action_short_film",
-      ],
-    },
-  ];
+function UserSelections() {
+  const { userId, name } = useParams();
+  console.log(name)
+  const [userSelections, setUserSelections] =
+    useState<UserSelectionsObj | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const calledAPI = useRef(false);
+  
+  useEffect(() => {
+    if (!userId || calledAPI.current) return;
+    calledAPI.current = true;
+    console.log(userId)
+    getEntry({user_id: userId})
+      .then((data) => {
+        console.log("Fetched entry data:", data);
+        setUserSelections({...data.data, name: name ? name : "Unknown User"});
+      })
+      .catch((err) => {
+        console.error("Error fetching entry data:", err);
+        setError("Failed to load user selections.");
+      });
+  }, [userId]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const [editing, setEditing] = useState<boolean>(false);
+  const selections = userSelections?.selections ?? [];
 
-  const bySlug = Object.fromEntries(
-    userSelections.selections.map((p) => [p.slug, p]),
-  );
+  const bySlug = Object.fromEntries(selections.map((p) => [p.slug, p]));
 
-  const currentPoints = userSelections.selections.reduce((acc, sel) => {
-    return sel.nominee == sel.winner ? acc + sel.points : acc;
+  const currentPoints = selections.reduce((acc, sel) => {
+    return sel.nominee === sel.winner ? acc + sel.points : acc;
   }, 0);
 
-  const getBackgroundColor = (winner: string | null, nominee: string) => {
-    if (winner) {
-      if (nominee == winner) {
-        return "rgba(118, 234, 30, 0.24)";
-      } else {
-        return "rgba(242, 63, 63, 0.22)";
-      }
-    } else {
-      return "rgba(255,255,255,0.06)";
-    }
-  };
-
+  if (error) return <div style={{ padding: 16, color: "white" }}>{error}</div>;
+  if (!userSelections)
+    return <div style={{ padding: 16, color: "white" }}>Loading…</div>;
+  
   return (
     <div
       style={{
@@ -108,11 +74,15 @@ function UserSelections({ userSelections }: UserSelectionsProps) {
         alignItems: "center",
         justifyContent: "center",
         width: "100%",
+        marginBottom: 25,
       }}
     >
-      <div style={styles.profileHeader}>
+      {/* <div style={styles.profileHeader}>
         <div style={styles.name}>{userSelections.name}</div>
         <div style={styles.sub}>Points: {currentPoints}</div>
+      </div> */}
+      <div style={styles.profileHeader} className="nine">
+        <h1>{userSelections.name} <span>Points: {currentPoints}</span></h1>
       </div>
       <div style={styles.container}>
         {GROUPS.map((g) => (
@@ -138,10 +108,15 @@ function UserSelections({ userSelections }: UserSelectionsProps) {
                   }),
                 );
 
-                // Turn into own component
                 return (
-                 <SelectionItem key={slug} nominees={nominees} pick={pick} slug={slug} user_id={userSelections.user_id} />
-                )
+                  <SelectionItem
+                    key={slug}
+                    nominees={nominees}
+                    pick={pick}
+                    slug={slug}
+                    user_id={userSelections.user_id}
+                  />
+                );
               })}
             </div>
           </section>
@@ -150,57 +125,11 @@ function UserSelections({ userSelections }: UserSelectionsProps) {
     </div>
   );
 }
-const customStyles = {
-  control: (base: any, state: any) => ({
-    ...base,
-    backgroundColor: "rgba(255,255,255,0.08)",
-    borderColor: state.isFocused
-      ? "rgba(239, 219, 149, 0.8)"
-      : "rgba(255,255,255,0.16)",
-    boxShadow: state.isFocused ? "0 0 0 1px rgba(239, 219, 149, 0.8)" : "none",
-    borderRadius: 12,
-  }),
-
-  menu: (base: any) => ({
-    ...base,
-    backgroundColor: "#2f2f2f",
-    borderRadius: 12,
-    overflow: "hidden",
-  }),
-
-  option: (base: any, state: any) => ({
-    ...base,
-    backgroundColor: state.isSelected
-      ? "rgba(239, 219, 149, 0.2)"
-      : state.isFocused
-        ? "rgba(255,255,255,0.08)"
-        : "transparent",
-    color: "white",
-    fontSize: 12,
-    textAlign: "left",
-  }),
-
-  singleValue: (base: any) => ({
-    ...base,
-    color: "white",
-    fontSize: 12,
-    textAlign: "left",
-  }),
-
-  placeholder: (base: any) => ({
-    ...base,
-    color: "rgba(255,255,255,0.6)",
-  }),
-
-  dropdownIndicator: (base: any) => ({
-    ...base,
-    color: "rgba(239, 219, 149, 0.9)",
-  }),
-};
 
 const styles = {
   container: {
     width: "90%",
+    maxWidth: 600,
   },
   profileHeader: {
     display: "flex",
@@ -208,13 +137,15 @@ const styles = {
     gap: 8,
     flexDirection: "column" as "column",
     marginTop: 10,
-    width: "100%",
+    width: "80%",
+    justifyContent: "space-between",
   },
 
   name: {
     fontSize: 20,
     fontWeight: 700,
     color: "white",
+    textTransform: "uppercase",
   },
 
   sub: {
