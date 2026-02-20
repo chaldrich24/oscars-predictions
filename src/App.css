@@ -18,6 +18,15 @@ body, html, #root {
   pointer-events: none;
 }
 
+.select:hover {
+  border-color: white !important; 
+}
+
+.select:focus-within {
+  border-color: #f4c15c !important;
+  box-shadow: 0 0 0 1px rgba(203, 217, 0, 0.2) !important;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

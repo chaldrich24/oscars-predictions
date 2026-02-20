@@ -1,14 +1,15 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import "./App.css";
 import CreateEntry from "./components/CreateEntry";
 import { FaPlusCircle } from "react-icons/fa";
 import Leaderboard from "./components/Leaderboard";
 import { getLeaderboard } from "./lib/supabaseClient";
-import UserSelections from "./components/UserSelections";
+import UserSelections, { UserSelectionsObj } from "./components/UserSelections";
 
 function App() {
   const [content, setContent] = useState<string | null>(null);
-  const [userSelections, setUserSelections] = useState<any>(null);
+  const [userSelections, setUserSelections] = useState<UserSelectionsObj | null>(null);
+  const contentRef = useRef<string | null>(null);
 
   const displayUserSelections = (data: any) => {
     if (data) {
@@ -18,20 +19,23 @@ function App() {
   };
 
   const contentToRender = useMemo(() => {
-    switch (content) {
-      case "create":
-        return <CreateEntry setContent={setContent} />;
+    if (content !== contentRef.current) {
+      contentRef.current = content;
+      switch (content) {
+        case "create":
+          return <CreateEntry setContent={setContent} />;
 
-      case "leaderboard":
-        return <Leaderboard displayUserSelections={displayUserSelections} />;
+        case "leaderboard":
+          return <Leaderboard displayUserSelections={displayUserSelections} />;
 
-      case "user":
-        return userSelections ? (
-          <UserSelections userSelections={userSelections} />
-        ) : null;
+        case "user":
+          return userSelections ? (
+            <UserSelections userSelections={userSelections} />
+          ) : null;
 
-      default:
-        return null;
+        default:
+          return null;
+      }
     }
   }, [content, userSelections]);
 
