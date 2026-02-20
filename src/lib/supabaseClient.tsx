@@ -68,6 +68,27 @@ export async function getEntry({ user_id, pin }: any) {
   });
 
   const json = await res.json();
-  if (!res.ok) throw new Error(json.error || "Submit failed");
+  if (!res.ok) throw new Error(json.error || "Could not fetch entry");
+  return json; // { ok: true, userId: "..." }
+}
+
+export async function updateEntry({ user_id, category_id, nominee }: any) {
+
+  const url = `${SUPABASE_URL}/functions/v1/update-entry`;
+
+  const res = await fetch(url, {
+    method: "POST",
+    headers: new Headers({
+      "Content-Type": "application/json",
+    }) as HeadersInit,
+    body: JSON.stringify({
+      user_id,
+      category_id,
+      nominee,
+    }),
+  });
+
+  const json = await res.json();
+  if (!res.ok) throw new Error(json.error || "Could not update entry");
   return json; // { ok: true, userId: "..." }
 }

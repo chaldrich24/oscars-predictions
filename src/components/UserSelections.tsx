@@ -2,6 +2,7 @@ import { use, useEffect, useRef, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import EditSelections from "./EditSelections";
 import Select, { GroupBase, OptionsOrGroups, Options } from "react-select";
+import SelectionItem from "./SelectionItem";
 
 type Option = { value: string; label: string };
 
@@ -17,6 +18,7 @@ export type UserSelections = {
 
 export type UserSelectionsObj = {
   name: string;
+  user_id: string;
   selections: UserSelections[];
 };
 
@@ -46,7 +48,7 @@ function UserSelections({ userSelections }: UserSelectionsProps) {
       ],
     },
     {
-      title: "Craft",
+      title: "Technical & Craft",
       slugs: [
         "cinematography",
         "film_editing",
@@ -61,7 +63,7 @@ function UserSelections({ userSelections }: UserSelectionsProps) {
       ],
     },
     {
-      title: "Shorts & International",
+      title: "Other Features & Shorts",
       slugs: [
         "international_feature_film",
         "animated_feature_film",
@@ -77,7 +79,6 @@ function UserSelections({ userSelections }: UserSelectionsProps) {
   }, []);
 
   const [editing, setEditing] = useState<boolean>(false);
-  const [values, setValues] = useState<any>(null);
 
   const bySlug = Object.fromEntries(
     userSelections.selections.map((p) => [p.slug, p]),
@@ -110,7 +111,7 @@ function UserSelections({ userSelections }: UserSelectionsProps) {
       }}
     >
       <div style={styles.profileHeader}>
-        <div style={styles.name}>Raymond Stevenson</div>
+        <div style={styles.name}>{userSelections.name}</div>
         <div style={styles.sub}>Points: {currentPoints}</div>
       </div>
       <div style={styles.container}>
@@ -139,84 +140,8 @@ function UserSelections({ userSelections }: UserSelectionsProps) {
 
                 // Turn into own component
                 return (
-                  <div
-                    key={slug}
-                    style={{
-                      padding: 12,
-                      borderRadius: 10,
-                      background: getBackgroundColor(pick.winner, pick.nominee),
-                    }}
-                  >
-                    <div
-                      style={{
-                        fontSize: 12,
-                        textTransform: "uppercase",
-                        opacity: 0.65,
-                        marginBottom: 4,
-                        color: "white",
-                        display: "flex",
-                        flexDirection: "row",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <div
-                        style={{ flex: 1 }}
-                        onClick={() => console.log("PRESS")}
-                      >
-                        <FaEdit
-                          style={{
-                            fontSize: 12,
-                            opacity: 0.5,
-                            color: "white",
-                          }}
-                        />
-                      </div>
-                      <div style={{ flex: 10 }}>{pick.category_name}</div>
-                      {pick.winner && pick.winner == pick.nominee ? (
-                        <div
-                          style={{
-                            fontSize: 10,
-                            opacity: 0.75,
-                            color: "white",
-                            flex: 1,
-                          }}
-                        >
-                          + {pick.points}
-                        </div>
-                      ) : (
-                        <div style={{ flex: 1 }}></div>
-                      )}
-                    </div>
-                    <div style={styles.nomineeContainer}>
-                      <div style={{ width: "100%", flex: 4, marginRight: 10 }}>
-                        <Select<Option, false>
-                          styles={customStyles}
-                          options={nominees}
-                          defaultValue={{
-                            value: pick.nominee,
-                            label: pick.nominee,
-                          }}
-                        />
-                      </div>
-                      <button
-                        style={{
-                          minHeight: 25,
-                          flex: 1,
-                          borderRadius: 12,
-                          backgroundColor: "rgba(239, 219, 149, 0.8)",
-                          color: "black",
-                          border: "none",
-                          cursor: "pointer",
-                        }}
-                      >
-                        Submit
-                      </button>
-
-                      {/* {pick.nominee} */}
-                    </div>
-                  </div>
-                );
+                 <SelectionItem key={slug} nominees={nominees} pick={pick} slug={slug} user_id={userSelections.user_id} />
+                )
               })}
             </div>
           </section>
