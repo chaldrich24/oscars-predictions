@@ -165,7 +165,7 @@ function SelectionItem({ nominees, pick, slug, user_id }: SelectionItemProms) {
               minHeight: 25,
               flex: 1,
               borderRadius: 12,
-              backgroundColor: "rgba(239, 219, 149, 0.8)",
+              backgroundColor: "rgb(174, 155, 91)",
               color: "black",
               border: "none",
               cursor: "pointer",

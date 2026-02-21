@@ -77,7 +77,7 @@ export default function OscarQuestion({
         </div>
 
         <div className="meta" style={styles.meta}>
-          <span style={{...styles.pill, ...{backgroundColor: selected ? "#efdb95" : "#bcb8b6dc"}}} className="pill">
+          <span style={{...styles.pill, ...{backgroundColor: selected ? "#a99b6b" : "#bcb8b6dc"}}} className="pill">
             {points} point{points === 1 ? "" : "s"}
           </span>
           <span style={styles.status}>{selected ? "" : "No selection"}</span>
@@ -125,22 +125,6 @@ export default function OscarQuestion({
           );
         })}
       </ul>
-
-      {showClear ? (
-        <footer style={styles.footer}>
-          <button
-            type="button"
-            onClick={() => setSelected(null)}
-            disabled={disabled || !selected}
-            style={{
-              ...styles.button,
-              ...((disabled || !selected) ? styles.buttonDisabled : null),
-            }}
-          >
-            Clear selection
-          </button>
-        </footer>
-      ) : null}
     </section>
   );
 }
@@ -148,7 +132,7 @@ export default function OscarQuestion({
 const styles = {
   card: {
     maxWidth: 800,
-    padding: "16px 16px 5px 16px",
+    padding: "16px",
     borderRadius: 7,
     border: "1px solid rgba(215, 213, 211, 0.16)",
     fontFamily:
@@ -168,7 +152,7 @@ const styles = {
     margin: 0,
     lineHeight: 1.2,
     fontFamily: "Cormorant Garamond, serif",
-    color: "rgb(250, 250, 250)",
+    color: "rgb(255, 255, 255)",
   },
   meta: {
     display: "flex",
@@ -185,7 +169,8 @@ const styles = {
   status: {
     fontSize: 10,
     opacity: 0.75,
-    marginLeft: 2
+    marginLeft: 4, 
+    color: "white"
   },
   list: {
     listStyle: "none",
@@ -245,7 +230,7 @@ const styles = {
   },
   button: {
     border: "none",
-    padding: "8px 10px",
+    padding: "4px 10px",
     background: "white",
     cursor: "pointer",
     fontSize: 13,
@@ -253,7 +238,7 @@ const styles = {
     color: "white",
   },
   buttonDisabled: {
-    opacity: 0.6,
+    opacity: 0,
     cursor: "not-allowed",
   },
 };
