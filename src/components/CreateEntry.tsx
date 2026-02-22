@@ -119,6 +119,9 @@ function CreateEntry() {
               </p>
             </div>
           )}
+          <div style={{ color: "white", marginBottom: 12, fontSize: 13 }}>
+            Create a 4-digit PIN so you can come back later and edit your picks.
+          </div>
           <input
             style={{ marginBottom: 12, padding: 12 }}
             type="text"
@@ -149,7 +152,7 @@ const styles = {
     display: "flex",
     flexDirection: "column" as "column",
     alignItems: "center",
-    marginTop: 48,
+    marginTop: 40,
     marginBottom: 48,
     position: "relative" as "relative",
   },

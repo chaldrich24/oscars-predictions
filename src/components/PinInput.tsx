@@ -17,7 +17,7 @@ export default function PinInput({
       <input
         style={{marginBottom: 12, padding: 12}}
         type={showPin ? "text" : "password"}
-        placeholder="PIN"
+        placeholder="PIN for editing"
         value={pin}
         inputMode="numeric"
         pattern="\d*"
@@ -34,10 +34,10 @@ export default function PinInput({
         onClick={() => setShowPin((s) => !s)}
         style={{
           position: "absolute",
-          right: 40,
-          top: 4,
-          height: 34,
-          width: 34,
+          right: 38,
+          top: 8,
+          height: 25,
+          width: 25,
           borderRadius: 8,
           border: "1px solid rgba(0,0,0,0.15)",
           background: "#d9d9d9",

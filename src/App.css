@@ -3,6 +3,7 @@ body, html, #root {
   padding: 0;
   height: 100%;
   background-color: #565656;
+  overflow-x: hidden;
 }
 
 .App {

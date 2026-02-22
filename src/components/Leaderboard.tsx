@@ -9,6 +9,27 @@ function Leaderboard() {
   const [leaderboardData, setLeaderboardData] = useState<any>(null);
   const didRun = useRef(false);
   const posterImageExts = ["jpg", "png", "webp"];
+  const colors = ["#fff", "rgb(174, 155, 91)"];
+  const [index, setIndex] = useState(0);
+  const [running, setRunning] = useState(true);
+
+  useEffect(() => {
+    if (!running) return;
+
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % colors.length);
+    }, 500);
+
+    const timeout = setTimeout(() => {
+      setRunning(false);
+      clearInterval(interval);
+    }, 3000);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
+    };
+  }, [running]);
 
   useEffect(() => {
     if (didRun.current) return;
@@ -68,18 +89,8 @@ function Leaderboard() {
           flexDirection: "column",
         }}
       >
-        <h2
-          style={{
-            margin: 0,
-            fontFamily: "Cormorant Garamond, serif",
-            color: "white",
-          }}
-        >
-          Leaderboard
-        </h2>
-        <div style={{ fontSize: 12, opacity: 0.7, color: "white" }}>
-          Points update when winners are set. Select your name to edit your
-          picks and see your points breakdown.
+        <div style={{ fontSize: 15, color: colors[index], fontWeight: 800 }}>
+          Select your name to edit your picks!
         </div>
       </div>
       {/* Start of map */}
