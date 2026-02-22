@@ -5,13 +5,13 @@ import { FaPlusCircle } from "react-icons/fa";
 import Leaderboard from "./components/Leaderboard";
 import { getLeaderboard } from "./lib/supabaseClient";
 import UserSelections, { UserSelectionsObj } from "./components/UserSelections";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 function App() {
-
+  const navigate = useNavigate();
   return (
     <div className="App">
-      <header className="App-header">
+      <button className="App-header" onClick={() => navigate("/")}>
         <img
           src={"/images/oscars.png"}
           style={{
@@ -22,7 +22,7 @@ function App() {
             paddingLeft: 20,
           }}
         />
-      </header>
+      </button>
       <Routes>
         <Route path="/create-new-entry" element={<CreateEntry />} />
         <Route path="/" element={<Leaderboard />} />

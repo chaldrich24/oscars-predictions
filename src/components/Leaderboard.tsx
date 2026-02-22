@@ -37,7 +37,7 @@ function Leaderboard() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        marginBottom: 50,
+        marginBottom: 25,
       }}
     >
       <button
@@ -144,9 +144,10 @@ function Leaderboard() {
           </div>
           {leaderboardData &&
             leaderboardData.map((entry: any, index: number) => (
-              <div
+              <button
                 key={index}
                 style={{
+                  all: "unset",
                   ...styles.row,
                   display: "flex",
                   justifyContent: "space-between",
@@ -235,7 +236,7 @@ function Leaderboard() {
                     {entry.totalPoints}
                   </p>
                 </div>
-              </div>
+              </button>
             ))}
         </div>
       )}
