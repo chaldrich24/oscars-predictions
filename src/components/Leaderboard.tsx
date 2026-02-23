@@ -219,7 +219,6 @@ function Leaderboard() {
                       border: "2px solid rgba(0, 0, 0, 1)",
                       borderRadius: 4,
                       overflow: "hidden",
-                      width: 60,
                     }}
                   >
                     <img

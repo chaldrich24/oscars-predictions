@@ -32,6 +32,7 @@ export default function PinInput({
       <button
         type="button"
         onClick={() => setShowPin((s) => !s)}
+        className="btn-iphone-styles"
         style={{
           position: "absolute",
           right: 38,

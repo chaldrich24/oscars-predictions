@@ -62,7 +62,7 @@ function SelectionItem({ nominees, pick, slug, user_id }: SelectionItemProms) {
     return (
       <FaEdit
         style={{
-          fontSize: 12,
+          fontSize: 14,
           opacity: 0.5,
           color: "white",
         }}
@@ -74,7 +74,7 @@ function SelectionItem({ nominees, pick, slug, user_id }: SelectionItemProms) {
     return (
       <FaTimes
         style={{
-          fontSize: 12,
+          fontSize: 14,
           opacity: 0.5,
           color: "white",
         }}
@@ -158,6 +158,7 @@ function SelectionItem({ nominees, pick, slug, user_id }: SelectionItemProms) {
                 label: nominee.value,
               }}
               onChange={(option) => setNewEntry(option)}
+              isSearchable={false}
             />
           </div>
           <button
@@ -169,6 +170,8 @@ function SelectionItem({ nominees, pick, slug, user_id }: SelectionItemProms) {
               color: "black",
               border: "none",
               cursor: "pointer",
+              marginTop: 10,
+              padding: "4px 12px",
             }}
             onClick={() =>
               updateEntryHandler({
@@ -184,10 +187,10 @@ function SelectionItem({ nominees, pick, slug, user_id }: SelectionItemProms) {
       ) : (
         <div style={{ ...styles.nomineeContainer, flexDirection: "column" }}>
           {nominee.display.length == 1 ? (
-            <div>{nominee.display[0]}</div>
+            <div style={{ fontSize: 17 }}>{nominee.display[0]}</div>
           ) : (
             <div>
-              <div>{nominee.display[0]}</div>
+              <div style={{ fontSize: 17}}>{nominee.display[0]}</div>
               <div style={{ fontSize: 12, opacity: 0.75 }}>
                 {nominee.display[1]}
               </div>
@@ -208,13 +211,30 @@ const customStyles = {
       : "rgba(255,255,255,0.16)",
     boxShadow: state.isFocused ? "0 0 0 1px rgba(239, 219, 149, 0.8)" : "none",
     borderRadius: 12,
+
+    // IMPORTANT:
+    fontSize: 16,
+    minHeight: 38,
   }),
 
-  menu: (base: any) => ({
+  // this targets the actual input element react-select uses
+  input: (base: any) => ({
     ...base,
-    backgroundColor: "#2f2f2f",
-    borderRadius: 12,
-    overflow: "hidden",
+    fontSize: 16,
+    fontWeight: 400,
+  }),
+
+  singleValue: (base: any) => ({
+    ...base,
+    color: "white",
+    fontSize: 16, // was 12
+    textAlign: "left",
+  }),
+
+  placeholder: (base: any) => ({
+    ...base,
+    color: "rgba(255,255,255,0.6)",
+    fontSize: 16,
   }),
 
   option: (base: any, state: any) => ({
@@ -225,20 +245,16 @@ const customStyles = {
         ? "rgba(255,255,255,0.08)"
         : "transparent",
     color: "white",
-    fontSize: 12,
+    fontSize: 16, // was 12
     textAlign: "left",
+    fontWeight: 600,
   }),
 
-  singleValue: (base: any) => ({
+  menu: (base: any) => ({
     ...base,
-    color: "white",
-    fontSize: 12,
-    textAlign: "left",
-  }),
-
-  placeholder: (base: any) => ({
-    ...base,
-    color: "rgba(255,255,255,0.6)",
+    backgroundColor: "#2f2f2f",
+    borderRadius: 12,
+    overflow: "hidden",
   }),
 
   dropdownIndicator: (base: any) => ({
@@ -255,6 +271,7 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    flexDirection: "column" as "column",
     width: "100%",
   },
 };
