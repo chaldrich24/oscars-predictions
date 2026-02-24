@@ -1,8 +1,7 @@
-import { use, useEffect, useRef, useState } from "react";
-import { getLeaderboard, validateUser } from "../lib/supabaseClient";
+import { useEffect, useRef, useState } from "react";
+import { getLeaderboard } from "../lib/supabaseClient";
 import { useNavigate } from "react-router-dom";
-
-import { FaPlusCircle } from "react-icons/fa";
+import { FaPlusCircle, FaChevronRight } from "react-icons/fa";
 
 function Leaderboard() {
   const navigate = useNavigate();
@@ -29,7 +28,7 @@ function Leaderboard() {
       clearInterval(interval);
       clearTimeout(timeout);
     };
-  }, [running]);
+  }, [running, colors.length]);
 
   useEffect(() => {
     if (didRun.current) return;
@@ -45,7 +44,7 @@ function Leaderboard() {
   const cleanFileName = (nominee: string) => {
     const cleaned = nominee
       .toLowerCase()
-      .replace(/[:\/\\|?<>*"']/g, "") // Remove special characters that are not allowed in file names
+      .replace(/[:\\|?<>*"']/g, "") // Remove special characters that are not allowed in file names
       .replace(/\s+/g, "_"); // Replace spaces with underscores
     return cleaned;
   };
@@ -166,28 +165,7 @@ function Leaderboard() {
                   marginBottom: 12,
                   width: "100%",
                 }}
-                onClick={() => {
-                  const pin = prompt(
-                    "Enter your 4-digit PIN to view/edit your entry:",
-                  );
-
-                  if (!pin) {
-                    return;
-                  } else {
-                    const request = {
-                      user_id: entry.user_id,
-                      pin: pin,
-                    };
-                    validateUser(request)
-                      .then(() => {
-                        navigate(`/user/${entry.user_id}/${entry.name}`);
-                      })
-                      .catch((err) => {
-                        console.error(err);
-                        alert("Error validating user: " + err.message);
-                      });
-                  }
-                }}
+                onClick={() => navigate(`/user/${entry.user_id}/${entry.name}`)}
               >
                 <div
                   style={{
@@ -229,6 +207,7 @@ function Leaderboard() {
                         height: 80,
                         objectFit: "cover",
                       }}
+                      alt={entry.bestPicture}
                       onError={(e: any) => {
                         const img = e.target;
                         const extIndex = posterImageExts.findIndex((ext) =>
@@ -241,10 +220,11 @@ function Leaderboard() {
                     />
                   </div>
                 </div>
-                <div style={{ flex: 1, textAlign: "right" }}>
-                  <p style={{ textAlign: "right", marginRight: 12 }}>
+                <div style={{ display:"flex", justifyContent: "flex-end", alignItems: "center", flex: 1, textAlign: "right" }}>
+                  <p style={{ textAlign: "right", marginRight: 6 }}>
                     {entry.totalPoints}
                   </p>
+                  <FaChevronRight style={{ opacity: 0.8, color: "rgb(235, 201, 92)", paddingRight: 3, marginBottom: 3  }} />
                 </div>
               </button>
             ))}

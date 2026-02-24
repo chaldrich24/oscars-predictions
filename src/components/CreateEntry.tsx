@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../App.css";
 import OscarQuestion from "./OscarQuestion";
 import PinInput from "./PinInput";
@@ -44,17 +44,7 @@ function CreateEntry() {
   }, []);
 
   useEffect(() => {
-    console.log(selections);
-    console.log(Object.keys(selections).length);
-    console.log(data);
-  }, [selections]);
-
-  useEffect(() => {
-    if (
-      submitPressed &&
-      data &&
-      Object.keys(selections).length !== data.length
-    ) {
+    if (submitPressed) {
       setTimeout(() => setSubmitPressed(false), 5000);
     }
   }, [submitPressed]);
@@ -120,7 +110,7 @@ function CreateEntry() {
             </div>
           )}
           <div style={{ color: "white", marginBottom: 12, fontSize: 13 }}>
-            Create a 4-digit PIN so you can come back later and edit your picks.
+            Create a 4-digit PIN so you can come back later and edit your picks. Don't forget it!
           </div>
           <input
             style={{ marginBottom: 12, padding: 12 }}

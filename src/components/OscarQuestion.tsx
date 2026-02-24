@@ -190,6 +190,7 @@ const styles = {
     userSelect: "none" as "none",
     // CHANGED
     background: "#686767",
+    minHeight: 30
   },
   rowDisabled: {
     cursor: "not-allowed",
@@ -203,12 +204,15 @@ const styles = {
   bullet: {
     width: 16,
     height: 16,
+    maxHeight: 16,
+    maxWidth: 16,
     borderRadius: 999,
     borderWidth: "2px",
     borderStyle: "solid",
     boxSizing: "border-box" as "border-box",
     display: "inline-block",
     borderColor: "rgba(231, 231, 231, 0.8)",
+    flex: 1
   },
   bulletChecked: {
     background: "rgba(237, 235, 235, 0.9)",
@@ -221,7 +225,8 @@ const styles = {
     fontSize: 13,
     lineHeight: 1.3,
     textAlign: "left" as "left",
-    color:"white"
+    color:"white",
+    flex: 1
   },
   footer: {
     marginTop: 12,

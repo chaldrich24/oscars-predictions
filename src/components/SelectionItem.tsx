@@ -1,10 +1,8 @@
 import Select, {
-  GroupBase,
-  OptionsOrGroups,
   Options,
   SingleValue,
 } from "react-select";
-import { UserSelections } from "./UserSelections";
+import { UserSelectionsDetails } from "./UserSelections";
 import { FaEdit, FaTimes } from "react-icons/fa";
 import { useState } from "react";
 import { updateEntry } from "../lib/supabaseClient";
@@ -13,7 +11,7 @@ type Option = { value: string; label: string };
 
 type SelectionItemProms = {
   nominees: Options<Option>;
-  pick: UserSelections;
+  pick: UserSelectionsDetails;
   slug: string;
   user_id: string;
 };
@@ -31,7 +29,7 @@ type UpdatedNominee = {
 
 const getBackgroundColor = (winner: string | null, nominee: string) => {
   if (winner) {
-    if (nominee == winner) {
+    if (nominee === winner) {
       return "rgba(118, 234, 30, 0.24)";
     } else {
       return "rgba(242, 63, 63, 0.22)";
@@ -83,13 +81,13 @@ function SelectionItem({ nominees, pick, slug, user_id }: SelectionItemProms) {
   };
 
   const setNewEntry = (option: SingleValue<Option>) => {
-    if (option && option.value != nominee.value) {
+    if (option && option.value !== nominee.value) {
       setNewNominee(option.value);
     }
   };
 
   const updateEntryHandler = (request: UpdateEntryRequestBody) => {
-    if (request.nominee && request.nominee != nominee.value) {
+    if (request.nominee && request.nominee !== nominee.value) {
       updateEntry(request)
         .then(() => {
           setEditing(false);
@@ -107,6 +105,10 @@ function SelectionItem({ nominees, pick, slug, user_id }: SelectionItemProms) {
         padding: 12,
         borderRadius: 10,
         background: getBackgroundColor(pick.winner, nominee.value),
+        minHeight: 42,
+        display: "flex",
+        flexDirection: "column" as "column",
+        justifyContent: "flex-start",
       }}
     >
       <div
@@ -132,7 +134,7 @@ function SelectionItem({ nominees, pick, slug, user_id }: SelectionItemProms) {
         )}
 
         <div style={{ flex: 10 }}>{pick.category_name}</div>
-        {pick.winner && pick.winner == nominee.value ? (
+        {pick.winner && pick.winner === nominee.value ? (
           <div
             style={{
               fontSize: 10,
@@ -167,11 +169,13 @@ function SelectionItem({ nominees, pick, slug, user_id }: SelectionItemProms) {
               flex: 1,
               borderRadius: 12,
               backgroundColor: "rgb(174, 155, 91)",
-              color: "black",
+              color: "#ededed",
               border: "none",
               cursor: "pointer",
               marginTop: 10,
               padding: "4px 12px",
+              fontWeight: 600,
+              textShadow: "0px 1px 1px rgba(0,0,0,0.4)",
             }}
             onClick={() =>
               updateEntryHandler({
@@ -186,7 +190,7 @@ function SelectionItem({ nominees, pick, slug, user_id }: SelectionItemProms) {
         </div>
       ) : (
         <div style={{ ...styles.nomineeContainer, flexDirection: "column" }}>
-          {nominee.display.length == 1 ? (
+          {nominee.display.length === 1 ? (
             <div style={{ fontSize: 17 }}>{nominee.display[0]}</div>
           ) : (
             <div>

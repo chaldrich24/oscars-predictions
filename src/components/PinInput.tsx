@@ -43,6 +43,7 @@ export default function PinInput({
           border: "1px solid rgba(0,0,0,0.15)",
           background: "#d9d9d9",
           cursor: "pointer",
+          color: "#282828",
         }}
         aria-label={showPin ? "Hide PIN" : "Show PIN"}
       >
