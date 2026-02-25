@@ -1,0 +1,9 @@
+:root {
+    --background: #565656;
+    --section-bg: rgb(97, 97, 97);
+    --section-item-bg: rgb(104, 103, 103);
+
+    --oscar-gold: rgb(168, 155, 111);
+    --accent: rgba(255,255,255,0.3);
+    --btn-gradient: linear-gradient(135deg, #ffffffaf 0%, #e9c1401d 100%);
+}

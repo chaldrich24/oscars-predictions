@@ -165,17 +165,22 @@ function SelectionItem({ nominees, pick, slug, user_id }: SelectionItemProms) {
           </div>
           <button
             style={{
-              minHeight: 25,
+              minHeight: 30,
               flex: 1,
               borderRadius: 12,
-              backgroundColor: "rgb(174, 155, 91)",
-              color: "#ededed",
+              backgroundColor: "var(--oscar-gold)",
+              backgroundImage: "var(--btn-gradient)",
+              WebkitTextFillColor: "#000000",
+              boxShadow: "0 20px 30px -6px rgba(95, 96, 95, 0.8)",
               border: "none",
               cursor: "pointer",
+              padding: "8px 8px",
+              fontWeight: 50,
+              textShadow: "0px 1px 1px rgba(224, 222, 222, 0.4)",
+              color: "#ededed",
               marginTop: 10,
-              padding: "4px 12px",
-              fontWeight: 600,
-              textShadow: "0px 1px 1px rgba(0,0,0,0.4)",
+              fontSize: 13,
+              minWidth: 80,
             }}
             onClick={() =>
               updateEntryHandler({

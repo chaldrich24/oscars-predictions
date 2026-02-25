@@ -32,7 +32,7 @@ html, body {
 }
 
 .select:focus-within {
-  border-color: #f4c15c !important;
+  border-color: var(--oscar-gold) !important;
   box-shadow: 0 0 0 1px rgba(203, 217, 0, 0.2) !important;
 }
 
@@ -63,13 +63,14 @@ html, body {
   align-items: center;
   justify-content: center;
   z-index: 999;
+  width: 100%;
 }
 
 .modal {
   background: #565656;
   padding: 24px;
   border-radius: 16px;
-  width: 85%;
+  width: 75%;
   max-width: 320px;
   text-align: center;
   color: white;
@@ -127,9 +128,9 @@ html, body {
 .main-btn {
   border-radius: 5px;
   font-family: Palatino, URW Palladio L, serif;
-  background-color: #b2a482;
+  background-color: var(--oscar-gold);
   border-radius: 50px;
-  background-image: linear-gradient(135deg, #ffffffaf 0%, #e9c1401d 100%);
+  background-image: var(--btn-gradient);
   box-shadow: 0 20px 30px -6px rgba(95, 96, 95, 0.5);
   align-items: center;
   display: flex;
@@ -146,6 +147,16 @@ html, body {
   -webkit-text-fill-color: #000000;  
 }
 
+.create-entry-input::placeholder {
+  color: rgba(255,255,255,0.5);
+}
+
+.create-entry-input:focus-within {
+  outline-color: var(--oscar-gold) !important;
+  outline-style: solid !important;
+  border-color: var(--oscar-gold) !important;
+}
+
 .btn-iphone-styles {
   appearance: none;
   -webkit-appearance: none;               /* whatever you want */
@@ -153,14 +164,15 @@ html, body {
 }
 
 .submit-btn {
-  height: 50px;
+  height: 40px;
   padding-left: 5%;
   padding-right: 5%;
   border-radius: 10px;
   font-size: 18px;
   font-family: Palatino, URW Palladio L, serif;
-  background-color: #f4c15c;
+  background-color: var(--oscar-gold);
   border-radius: 50px;
+  background-image: var(--btn-gradient);
   appearance: none;
   -webkit-appearance: none;
   color: #282828;                 /* whatever you want */

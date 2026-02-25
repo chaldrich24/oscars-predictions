@@ -89,7 +89,7 @@ function Leaderboard() {
         }}
       >
         <div style={{ fontSize: 15, color: colors[index], fontWeight: 800 }}>
-          Select your name to edit your picks!
+          Find and select your name to edit your picks!
         </div>
       </div>
       {/* Start of map */}
@@ -99,7 +99,7 @@ function Leaderboard() {
             width: "90%",
             maxWidth: 500,
             margin: "0 auto",
-            background: "rgba(255,255,255,0.1)",
+            background: "var(--section-bg)",
             padding: 16,
             borderRadius: 12,
           }}
@@ -181,12 +181,13 @@ function Leaderboard() {
                     style={{
                       flex: 3,
                       textAlign: "left",
-                      textWrap: "wrap",
                       marginLeft: 12,
+                      overflow: "hidden",
+                      textWrap: "wrap",
                     }}
                   >
-                    {index + 1}.{" "}
-                    <span style={{ fontWeight: "500" }}>{entry.name}</span>
+                    <span>{index + 1}.{" "}</span>
+                    <span style={{ fontWeight: "500", fontFamily: "Cormorant Garamond, serif", }}>{entry.name.substring(0, 19)}{entry.name.length > 19 ? "..." : ""}</span>
                   </p>
                   <div
                     style={{
@@ -220,11 +221,11 @@ function Leaderboard() {
                     />
                   </div>
                 </div>
-                <div style={{ display:"flex", justifyContent: "flex-end", alignItems: "center", flex: 1, textAlign: "right" }}>
-                  <p style={{ textAlign: "right", marginRight: 6 }}>
+                <div style={{ display:"flex", justifyContent: "flex-end", alignItems: "center", flex: 1, textAlign: "right", height: "100%" }}>
+                  <p style={{ fontFamily: "Cormorant Garamond, serif" , textAlign: "right", marginRight: 6 }}>
                     {entry.totalPoints}
                   </p>
-                  <FaChevronRight style={{ opacity: 0.8, color: "rgb(235, 201, 92)", paddingRight: 3, marginBottom: 3  }} />
+                  <FaChevronRight style={{ opacity: 0.8, color: "rgb(235, 201, 92)", paddingRight: 3, marginBottom: 2  }} />
                 </div>
               </button>
             ))}
@@ -237,8 +238,8 @@ function Leaderboard() {
 const styles = {
   title: {
     marginTop: 0,
-    fontSize: 20,
-    borderBottom: "1px solid rgba(255,255,255,0.3)",
+    fontSize: 18,
+    borderBottom: "1px solid var(--accent)",
     paddingBottom: 8,
     fontFamily: "Cormorant Garamond, serif",
     color: "white",
@@ -247,7 +248,7 @@ const styles = {
   row: {
     border: "1px solid rgba(0,0,0,0.10)",
     borderRadius: 12,
-    backgroundColor: "rgba(255,255,255,0.10)",
+    backgroundColor: "var(--section-item-bg)",
     padding: "7px 0px",
   },
 };

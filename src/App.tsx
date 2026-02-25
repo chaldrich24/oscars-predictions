@@ -6,6 +6,7 @@ import Leaderboard from "./components/Leaderboard";
 import { getLeaderboard } from "./lib/supabaseClient";
 import UserSelections, { UserSelectionsObj } from "./components/UserSelections";
 import { Route, Routes, useNavigate } from "react-router-dom";
+import "./styles/theme.css";
 
 function App() {
   const navigate = useNavigate();

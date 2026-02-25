@@ -68,7 +68,6 @@ export default function OscarQuestion({
         setSelections((prev) => ({ ...prev, [category]: {nominee: next, categoryId: categoryId} }));
     }
   };
-
   return (
     <section className="card" style={styles.card} aria-label={category}>
       <header style={styles.header} className="header">
@@ -88,6 +87,11 @@ export default function OscarQuestion({
         {nominees.map((nominee, idx) => {
           const id = `${name}-${idx}`;
           const checked = nominee === selected;
+
+          const nomineeDisplay = nominee.includes("—")
+              ? nominee.split("—").map((i) => i.trim())
+              : [nominee];
+              console.log(nomineeDisplay);
 
           return (
             <li key={nominee} style={{ margin: 0 }}>
@@ -118,8 +122,13 @@ export default function OscarQuestion({
                     ...(disabled ? styles.bulletDisabled : null),
                   }}
                 />
-
-                <span style={styles.text}>{nominee}</span>
+                {
+                  nomineeDisplay.length > 1 ? (
+                    <span style={styles.text}>{nomineeDisplay[0]}<span style={{fontStyle: "italic", color: "#c0c0c0"}}> — {nomineeDisplay[1]}</span></span>
+                  ) : (
+                    <span style={styles.text}>{nomineeDisplay[0]}</span>
+                  )
+                }
               </label>
             </li>
           );
@@ -132,13 +141,12 @@ export default function OscarQuestion({
 const styles = {
   card: {
     maxWidth: 800,
-    padding: "16px",
+    padding: 16,
     borderRadius: 7,
     border: "1px solid rgba(215, 213, 211, 0.16)",
     fontFamily:
       'system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"',
     background: "#616161",
-    width: "100%",
     margin: "10px 0",
   },
   header: {

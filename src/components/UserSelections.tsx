@@ -1,9 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Options } from "react-select";
 import SelectionItem from "./SelectionItem";
 import { useParams } from "react-router-dom";
 import {
-  getEntry,
   getEntryFromToken,
   validateGetEntry,
 } from "../lib/supabaseClient";
@@ -83,7 +82,7 @@ function UserSelections() {
     } else {
       setLoading(false);
     }
-  }, []);
+  }, [userId, name]);
 
   const selections = userSelections?.selections ?? [];
 
@@ -116,7 +115,7 @@ function UserSelections() {
       {userSelections ? (
         <div style={styles.container}>
           {GROUPS.map((g) => (
-            <section key={g.title} style={{ marginBottom: 16 }}>
+            <section key={g.title} style={{ marginBottom: 25 }}>
               <h3
                 style={{
                   margin: "10px 0",
@@ -298,14 +297,16 @@ const styles = {
   },
   modalBtn: {
     borderRadius: 12,
-    backgroundColor: "rgb(174, 155, 91)",
+    backgroundColor: "var(--oscar-gold)",
+    backgroundImage: "var(--btn-gradient)",
     color: "#818181",
     border: "none",
     cursor: "pointer",
     padding: "10px 12px",
-    fontWeight: 600,
-    textShadow: "0px 1px 1px rgba(0,0,0,0.4)",
-    WebkitTextFillColor: "#ffffff",
+    fontWeight: 500,
+    textShadow: "0px 1px 1px rgba(224, 222, 222, 0.4)",
+    WebkitTextFillColor: "#000000",
+    boxShadow: "0 20px 30px -6px rgba(95, 96, 95, 0.8)"
   },
 };
 

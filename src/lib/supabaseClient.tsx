@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { SubmitRequest } from "../components/CreateEntry";
-import { SUPABASE_URL, SUPABASE_ANON_KEY, SUPABASE_PUBLISHABLE_KEY } from "../config/env";
+import { SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY } from "../config/env";
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 

@@ -15,8 +15,9 @@ export default function PinInput({
   return (
     <div style={{ position: "relative", width: 240 }}>
       <input
-        style={{marginBottom: 12, padding: 12}}
+        style={{marginBottom: 12, padding: 12, background: "var(--section-item-bg)", border: "none", borderRadius: 8, color: "white"}}
         type={showPin ? "text" : "password"}
+        className="create-entry-input"
         placeholder="PIN for editing"
         value={pin}
         inputMode="numeric"
@@ -36,18 +37,18 @@ export default function PinInput({
         style={{
           position: "absolute",
           right: 38,
-          top: 8,
+          top: 7,
           height: 25,
           width: 25,
           borderRadius: 8,
           border: "1px solid rgba(0,0,0,0.15)",
-          background: "#d9d9d9",
+          background: "var(--accent)",
           cursor: "pointer",
           color: "#282828",
         }}
         aria-label={showPin ? "Hide PIN" : "Show PIN"}
       >
-        <span>{!showPin ? <FaEye /> : <FaEyeSlash />}</span>
+        <span style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>{!showPin ? <FaEye /> : <FaEyeSlash />}</span>
       </button>
     </div>
   );
