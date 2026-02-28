@@ -73,9 +73,9 @@ function Leaderboard() {
             marginTop: "4px",
           }}
         >
-          CREATE NEW ENTRY
+          MAKE YOUR PICKS
         </div>
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <div style={{ display: "flex", alignItems: "center", marginLeft: 8 }}>
           <FaPlusCircle className="plus-icon" />
         </div>
       </button>
@@ -88,7 +88,7 @@ function Leaderboard() {
           flexDirection: "column",
         }}
       >
-        <div style={{ fontSize: 15, color: colors[index], fontWeight: 800 }}>
+        <div style={{ fontSize: 15, color: colors[index], fontWeight: 800, maxWidth:200 }}>
           Find and select your name to edit your picks!
         </div>
       </div>
@@ -97,7 +97,7 @@ function Leaderboard() {
         <div
           style={{
             width: "90%",
-            maxWidth: 500,
+            maxWidth: 450,
             margin: "0 auto",
             background: "var(--section-bg)",
             padding: 16,
@@ -198,6 +198,7 @@ function Leaderboard() {
                       border: "2px solid rgba(0, 0, 0, 1)",
                       borderRadius: 4,
                       overflow: "hidden",
+                      maxWidth: 70,
                     }}
                   >
                     <img

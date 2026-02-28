@@ -15,7 +15,7 @@ export default function PinInput({
   return (
     <div style={{ position: "relative", width: 240 }}>
       <input
-        style={{marginBottom: 12, padding: 12, background: "var(--section-item-bg)", border: "none", borderRadius: 8, color: "white"}}
+        style={{marginBottom: 12, padding: 12, background: "var(--section-item-bg)", border: "none", borderRadius: 8, color: "white", fontSize: 16}}
         type={showPin ? "text" : "password"}
         className="create-entry-input"
         placeholder="PIN for editing"
@@ -36,13 +36,13 @@ export default function PinInput({
         className="btn-iphone-styles"
         style={{
           position: "absolute",
-          right: 38,
+          right: 33,
           top: 7,
           height: 25,
           width: 25,
           borderRadius: 8,
           border: "1px solid rgba(0,0,0,0.15)",
-          background: "var(--accent)",
+          background: "#7b7b7b",
           cursor: "pointer",
           color: "#282828",
         }}

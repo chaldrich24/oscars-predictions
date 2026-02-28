@@ -91,7 +91,6 @@ export default function OscarQuestion({
           const nomineeDisplay = nominee.includes("—")
               ? nominee.split("—").map((i) => i.trim())
               : [nominee];
-              console.log(nomineeDisplay);
 
           return (
             <li key={nominee} style={{ margin: 0 }}>

@@ -174,12 +174,12 @@ function CreateEntry() {
               </p>
             </div>
           )}
-          <div style={{ color: "white", marginBottom: 12, fontSize: 13 }}>
+          <div style={{ color: "white", marginBottom: 12, fontSize: 14 }}>
             Create a 4-digit PIN so you can come back later and edit your picks.
             Don't forget it!
           </div>
           <input
-            style={{ marginBottom: 12, padding: 12, background: "var(--section-item-bg)", border: "none", borderRadius: 8, color: "white" }}
+            style={{ marginBottom: 12, padding: 12, background: "var(--section-item-bg)", border: "none", borderRadius: 8, color: "white", fontSize: 16 }}
             className="create-entry-input"
             type="text"
             placeholder="Name"

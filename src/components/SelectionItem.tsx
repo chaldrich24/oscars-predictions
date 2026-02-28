@@ -55,6 +55,7 @@ function SelectionItem({ nominees, pick, slug, user_id }: SelectionItemProms) {
     updateNominee(pick.nominee),
   );
   const [newNominee, setNewNominee] = useState<string>("");
+  const revealPicksTime = new Date('2026-03-15 23:00:00+00')
 
   const editButton = () => {
     return (
@@ -124,7 +125,7 @@ function SelectionItem({ nominees, pick, slug, user_id }: SelectionItemProms) {
           justifyContent: "space-between",
         }}
       >
-        {pick.winner !== null ? (
+        {(pick.winner !== null || new Date() >= revealPicksTime) ? (
           <div style={{ flex: 1 }}>
           </div>
         ) : (
@@ -175,7 +176,7 @@ function SelectionItem({ nominees, pick, slug, user_id }: SelectionItemProms) {
               border: "none",
               cursor: "pointer",
               padding: "8px 8px",
-              fontWeight: 50,
+              fontWeight: 500,
               textShadow: "0px 1px 1px rgba(224, 222, 222, 0.4)",
               color: "#ededed",
               marginTop: 10,

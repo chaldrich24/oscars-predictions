@@ -2,10 +2,7 @@ import { useEffect, useState } from "react";
 import { Options } from "react-select";
 import SelectionItem from "./SelectionItem";
 import { useParams } from "react-router-dom";
-import {
-  getEntryFromToken,
-  validateGetEntry,
-} from "../lib/supabaseClient";
+import { getEntryFromToken, validateGetEntry } from "../lib/supabaseClient";
 import { GROUPS } from "../data/CategoryGroupings";
 
 type Option = { value: string; label: string };
@@ -64,8 +61,9 @@ function UserSelections() {
     window.scrollTo(0, 0);
     const token = localStorage.getItem(`edit_token_${userId}`);
     const expiration = localStorage.getItem(`edit_token_exp_${userId}`);
+    const revealPicksTime = new Date('2026-03-15 23:00:00+00')
     const currenDateTime = new Date().toISOString();
-    if (token && expiration && currenDateTime < expiration) {
+    if ((token && expiration && currenDateTime < expiration) || new Date() >= revealPicksTime) {
       getEntryFromToken({ user_id: userId, token })
         .then((data) => {
           setUserSelections({
@@ -194,12 +192,16 @@ function UserSelections() {
       )}
       {showPinModal && (
         <div className="modal-overlay">
-          <div
+          <form
             className="modal"
             style={{
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
+            }}
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleVerify();
             }}
           >
             <h3>Enter PIN</h3>
@@ -234,7 +236,7 @@ function UserSelections() {
               <button
                 style={styles.modalBtn}
                 className="btn-iphone-styles"
-                onClick={handleVerify}
+                type="submit"
               >
                 Submit
               </button>
@@ -250,7 +252,7 @@ function UserSelections() {
                 Cancel
               </button>
             </div>
-          </div>
+          </form>
         </div>
       )}
     </div>
@@ -270,6 +272,9 @@ const styles = {
     marginTop: 10,
     width: "80%",
     justifyContent: "space-between",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    textWrap: "wrap",
   },
 
   name: {
@@ -306,7 +311,7 @@ const styles = {
     fontWeight: 500,
     textShadow: "0px 1px 1px rgba(224, 222, 222, 0.4)",
     WebkitTextFillColor: "#000000",
-    boxShadow: "0 20px 30px -6px rgba(95, 96, 95, 0.8)"
+    boxShadow: "0 20px 30px -6px rgba(95, 96, 95, 0.8)",
   },
 };
 
