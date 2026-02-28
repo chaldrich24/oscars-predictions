@@ -1,21 +1,27 @@
 import { useState } from "react";
-import {FaEye, FaEyeSlash} from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 type PinInputProps = {
-    pin: string;
-    setPin: React.Dispatch<React.SetStateAction<string>>;
-}
+  pin: string;
+  setPin: React.Dispatch<React.SetStateAction<string>>;
+};
 
-export default function PinInput({
-    pin,
-    setPin
-}: PinInputProps) {
+export default function PinInput({ pin, setPin }: PinInputProps) {
   const [showPin, setShowPin] = useState(false);
 
   return (
-    <div style={{ position: "relative", width: 240 }}>
+    <div style={{ position: "relative", width: "100%", maxWidth: 200 }}>
       <input
-        style={{marginBottom: 12, padding: 12, background: "var(--section-item-bg)", border: "none", borderRadius: 8, color: "white", fontSize: 16}}
+        style={{
+          padding: 12,
+          background: "var(--section-item-bg)",
+          border: "none",
+          borderRadius: 8,
+          color: "white",
+          fontSize: 16,
+          width: "100%",
+          boxSizing: "border-box" as "border-box",
+        }}
         type={showPin ? "text" : "password"}
         className="create-entry-input"
         placeholder="PIN for editing"
@@ -36,8 +42,12 @@ export default function PinInput({
         className="btn-iphone-styles"
         style={{
           position: "absolute",
-          right: 33,
-          top: 7,
+          right: 10, 
+          top: "50%",
+          transform: "translateY(-50%)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
           height: 25,
           width: 25,
           borderRadius: 8,
@@ -48,7 +58,15 @@ export default function PinInput({
         }}
         aria-label={showPin ? "Hide PIN" : "Show PIN"}
       >
-        <span style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>{!showPin ? <FaEye /> : <FaEyeSlash />}</span>
+        <span
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {!showPin ? <FaEye /> : <FaEyeSlash />}
+        </span>
       </button>
     </div>
   );

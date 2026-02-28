@@ -178,15 +178,28 @@ function CreateEntry() {
             Create a 4-digit PIN so you can come back later and edit your picks.
             Don't forget it!
           </div>
-          <input
-            style={{ marginBottom: 12, padding: 12, background: "var(--section-item-bg)", border: "none", borderRadius: 8, color: "white", fontSize: 16 }}
-            className="create-entry-input"
-            type="text"
-            placeholder="Name"
-            maxLength={30}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+           <div style={{ width: "100%", maxWidth: 200 }}>
+            <input
+              style={{
+                marginBottom: 12,
+                padding: 12,
+                background: "var(--section-item-bg)",
+                border: "none",
+                borderRadius: 8,
+                color: "white",
+                fontSize: 16,
+                width: "100%",
+                boxSizing: "border-box" as "border-box",
+              }}
+              className="create-entry-input"
+              type="text"
+              placeholder="Name"
+              maxLength={30}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+
           <PinInput pin={pin} setPin={setPin} />
           <button
             className="submit-btn"
@@ -211,7 +224,6 @@ const styles = {
     alignItems: "center",
     marginTop: 40,
     marginBottom: 48,
-    position: "relative" as "relative",
   },
   error: {
     color: "red",
