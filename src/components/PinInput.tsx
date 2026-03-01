@@ -25,6 +25,9 @@ export default function PinInput({ pin, setPin }: PinInputProps) {
         type={showPin ? "text" : "password"}
         className="create-entry-input"
         placeholder="PIN for editing"
+        autoComplete="one-time-code"
+        name="pin"
+        aria-label="PIN for editing"
         value={pin}
         inputMode="numeric"
         pattern="\d*"
