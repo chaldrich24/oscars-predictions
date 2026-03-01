@@ -202,12 +202,13 @@ function Leaderboard() {
                     }}
                   >
                     <img
-                      src={`/images/${cleanFileName(entry.bestPicture)}.${posterImageExts[0]}`}
+                      src={entry.bestPicture ? `/images/${cleanFileName(entry.bestPicture)}.${posterImageExts[0]}` : `/images/question.avif`}
                       style={{
                         display: "block",
                         width: "100%",
                         height: 80,
                         objectFit: "cover",
+                        opacity: entry.bestPicture ? 1 : 0.3,
                       }}
                       alt={entry.bestPicture}
                       onError={(e: any) => {

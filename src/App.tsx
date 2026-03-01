@@ -1,10 +1,7 @@
-import { useMemo, useState, useEffect, useRef } from "react";
 import "./App.css";
 import CreateEntry from "./components/CreateEntry";
-import { FaPlusCircle } from "react-icons/fa";
 import Leaderboard from "./components/Leaderboard";
-import { getLeaderboard } from "./lib/supabaseClient";
-import UserSelections, { UserSelectionsObj } from "./components/UserSelections";
+import UserSelections from "./components/UserSelections";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import "./styles/theme.css";
 
@@ -15,6 +12,7 @@ function App() {
       <button className="App-header" onClick={() => navigate("/")}>
         <img
           src={"/images/oscars.png"}
+          alt="Oscars Logo"
           style={{
             display: "block",
             width: "100%",

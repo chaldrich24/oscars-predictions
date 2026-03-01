@@ -147,10 +147,6 @@ html, body {
   -webkit-text-fill-color: #000000;  
 }
 
-.main-btn:active {
-  border: none
-}
-
 .create-entry-input::placeholder {
   color: rgba(255,255,255,0.5);
 }
@@ -185,10 +181,6 @@ html, body {
   -webkit-appearance: none;
   color: #282828;                 /* whatever you want */
   -webkit-text-fill-color: #000000; 
-}
-
-.submit-btn:active {
-  border: none
 }
 
 .btn {

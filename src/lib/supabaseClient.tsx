@@ -52,25 +52,6 @@ export async function getLeaderboard() {
   return json; // { ok: true, userId: "..." }
 }
 
-export async function getEntry({ user_id }: any) {
-
-  const url = `${SUPABASE_URL}/functions/v1/get-entry`;
-
-  const res = await fetch(url, {
-    method: "POST",
-    headers: new Headers({
-      "Content-Type": "application/json",
-    }) as HeadersInit,
-    body: JSON.stringify({
-      user_id,
-    }),
-  });
-
-  const json = await res.json();
-  if (!res.ok) throw new Error(json.error || "Could not fetch entry");
-  return json; // { ok: true, userId: "..." }
-}
-
 export async function updateEntry({ user_id, category_id, nominee }: any) {
 
   const url = `${SUPABASE_URL}/functions/v1/update-entry`;
@@ -89,25 +70,6 @@ export async function updateEntry({ user_id, category_id, nominee }: any) {
 
   const json = await res.json();
   if (!res.ok) throw new Error(json.error || "Could not update entry");
-  return json; // { ok: true, userId: "..." }
-}
-
-export async function validateUser({ user_id, pin }: any) {
-  const url = `${SUPABASE_URL}/functions/v1/validate-user`;
-
-  const res = await fetch(url, {
-    method: "POST",
-    headers: new Headers({
-      "Content-Type": "application/json",
-    }) as HeadersInit,
-    body: JSON.stringify({
-      user_id,
-      pin,
-    }),
-  });
-
-  const json = await res.json();
-  if (!res.ok) throw new Error(json.error || "Could not fetch entry");
   return json; // { ok: true, userId: "..." }
 }
 
